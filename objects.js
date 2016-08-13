@@ -1,12 +1,20 @@
 /*
-    # Plain object and adding properties
+ 
+     # Plain object and adding properties
         Declare a variable named `plainBox` and set its value to be an empty object.
         Next, you will add three properties to this object. Each property declaration expression will be on its own line and ending with semicolons (`;`). This is just one way of adding properties to an object.
             - Add a property named `color` and set it the name of any color.
             - Add a property named `size` and set it to a number value between `0` and `20`.
             - Add a property named `contents` and set it to be an empty array.
- */
+*/
 
+var plainBox = { };
+
+plainBox.color = "blue";
+plainBox.size = 15;
+plainBox.contents = [];
+
+ console.log(plainBox);
 
 /*
     # An object with properties declared line by line
@@ -23,7 +31,15 @@
             - add a key named `passengers` and set it to be an empty array.
  */
 
+var stockCar = {
+    model: "chevy",
+    year: 2016,
+    automaticTransmission:false,
+    driver: null,
+    passengers: []
+};
 
+ console.log(stockCar);
 /*
     Add new property inside a function
 
@@ -38,7 +54,17 @@
         Finally, invoke your new function while passing in the `plainPerson` object and additional agrument values, then store the return value in a variable named `completePerson`. Use `console.log` three times to print the entire object, just the value at `name`, and just the value at `age`.
  */
 
+var plainPerson = {};
 
+function buildPerson( person, nameString, age){
+    person.name = nameString;
+    person.age = age;
+    return person;
+}
+
+var completePerson = buildPerson(plainPerson, "bob", 13 ); 
+
+ console.log(completePerson);
 /*
     # Display values of objects that are inside an array
         Declare a new variable named `arrayOfObjects` and set it to be [this array of objects](https://gist.github.com/sgnl/958adf99007329d2e4ff).
@@ -62,6 +88,81 @@
             ...
  */
 
+var arrayOfObjects = 
+  [
+  {
+    id: 0,
+    date: "Monday Jan 25 2015 2:01 PM",
+    total: "279.38"
+  },
+
+  {
+    id: 1,
+    date: "Monday Jan 27 2015 11:31 AM",
+    total: "79.80"
+  },
+
+  {
+    id: 2,
+    date: "Monday Feb 1 2015 7:56 AM",
+    total: "15.62"
+  },
+
+  {
+    id: 3,
+    date: "Monday Feb 1 2015 9:43 AM",
+    total: "19.83"
+  },
+
+  {
+    id: 4,
+    date: "Monday Feb 1 2015 11:08 PM",
+    total: "56.69"
+  },
+
+  {
+    id: 5,
+    date: "Monday Feb 13 2015 10:22 AM",
+    total: "137.92"
+  },
+
+  {
+    id: 6,
+    date: "Monday Feb 14 2015 6:54 PM",
+    total: "938.65"
+  },
+
+  {
+    id: 7,
+    date: "Monday Feb 14 2015 7:17 PM",
+    total: "43.77"
+  },
+
+  {
+    id: 8,
+    date: "Monday Feb 14 2015 7:18 PM",
+    total: "28.54"
+  },
+
+  {
+    id: 9,
+    date: "Monday Feb 14 2015 7:18 PM",
+    total: "194.33"
+  }
+
+];
+
+
+function printProcessedOrders(orders){
+    for(var i = 0; i<orders.length; i++){
+        console.log("===");
+        console.log( "id: " + orders[i].id);
+        console.log("purchase date: " + orders[i].date);
+        console.log("total: " + orders[i].total);
+    }
+}
+
+printProcessedOrders(arrayOfObjects);
 
 /*
     # Addition with an object
@@ -74,6 +175,22 @@
         Go ahead and create some more objects and pass them to this function. Have fun with it.
 */
 
+var sumObj = {
+a: 2,
+b: 5,
+result: undefined
+}; 
+
+
+function objectAddition(object){
+    object.result = object.a + object.b;
+    return object;
+}
+
+
+var sumObjResult = objectAddition(sumObj);
+
+console.log(sumObjResult);
 
 /*
     # Print sum function and add as new key-value
@@ -89,6 +206,11 @@
         Invoke this function and pass in your object. Further test by changing the values of the object being passed in or **create more** objects and invoke your function multiple times.
  */
 
+function printObj(object){
+    return object.a + "+" + object.b + "=" + object.result;
+}
+
+console.log(printObj(sumObj));
 
 /*
     # Putting stuff in `plainBox`
@@ -97,7 +219,17 @@
         Invoke your function and pass in your object (which should be `plainBox`), store the result to a variable named plainBoxResult and use `console.log` to inspect your results.
  */
 
+function putInPlainBox (obj){
+    for(var i = 0; i < 10; i++){
+        var ranDMX = Math.floor((Math.random() * 50));
+        obj.contents.push(ranDMX);
+    }
+    return obj;
+}
 
+var plainBoxResult = putInPlainBox(plainBox);
+
+console.log(plainBoxResult);
 /*
     # Detecting transmission
         Declare a function named detectingTranmission and a single parameter which will be an object. Within this function you will check to see if the car has an automatic or manual transmission and print the results on screen.
@@ -106,6 +238,17 @@
 
         Invoke your function and pass in your stockCar object, store the result to a variable named isAutomaticTransmission and use `console.log` to inspect your results.
  */
+
+function detectingTranmission(obj){
+    if (obj.automaticTransmission === true) {
+        return "junk you fawka";
+    } else {
+        return "cherrehhhhhhhhh";
+    }
+}
+
+var isAutomaticTransmission = detectingTranmission(stockCar); 
+console.log(isAutomaticTransmission);
 
 
 /*
@@ -117,7 +260,13 @@
         Invoke your function and pass in your objects, store the result to a variable named stockCarWithDriver, and inspect your results. Consider using `plainPerson` as your driver.
  */
 
+function addDriver(obj, person){
+    obj.driver = person;
+    return obj;
+}
 
+var stockCarWithDriver = addDriver(stockCar, plainPerson.name);
+console.log(stockCarWithDriver);
 /*
     # Final Boss
     The Dev League instructors want to ride your whip!
@@ -149,5 +298,19 @@
         'Kelli, age 19, is riding dirty!'
         'Marifel, age 19, is riding dirty!'
         'Victor, age 19, is riding dirty!'
- */
+*/
 
+var passengerList = ['Jon', 'Jason', 'Tony', 'Joe', 'Jesse', 'Nigel', 'Kelli', 'Marifel', 'Victor'];
+var passengerAges = [19, 12, 21, 22, 16, 9, 19, 20, 15];
+ 
+ function addPassenger( car, names, ages){
+    for( var i = 0; i<names.length; i++){
+        var newList = {};
+        buildPerson(newList, names[i], ages[i])
+        car.passengers.push(newList);
+        
+    }
+    return car;
+ }
+
+console.log(addPassenger(stockCar, passengerList, passengerAges));
